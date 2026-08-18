@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecta Capacitaciones - Escuela de Negocios</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/q1S6yHO.png">
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Caveat (for the tagline script) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        script: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f2c41', 
+                            light: '#3ea1d9', 
+                            hover: '#2d79a5',
+                            whatsapp: '#25D366'
+                        },
+                        secondary: '#1e293b', 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .course-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .brand-gradient { background: linear-gradient(135deg, #0a1f2e 0%, #173d57 100%); }
+        /* Custom scrollbar for admin area */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0f2c41; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3ea1d9; }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: PUBLIC WEBSITE -->
+    <!-- ========================================== -->
+    <div id="public-view" class="flex flex-col min-h-screen">
+        <header class="bg-brand-dark text-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo Area -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="#" class="flex items-center gap-3">
+                            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center">
+                                <img src="https://i.imgur.com/q1S6yHO.png" alt="Logo Proyecta" class="w-full h-full object-contain">
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-black text-2xl text-brand-light tracking-wider leading-none">PROYECTA</span>
+                                <span class="font-bold text-[10px] text-white tracking-widest leading-none mt-1">ESCUELA DE NEGOCIOS</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <nav class="hidden md:flex space-x-8">
+                        <a href="#inicio" class="text-gray-300 hover:text-brand-light font-medium transition-colors">Inicio</a>
+                        <a href="#nosotros" class="text-gray-300 hover:text-brand-light font-medium transition-colors">Nosotros</a>
+                        <a href="#cursos" class="text-gray-300 hover:text-brand-light font-medium transition-colors">Cursos</a>
+                        <a href="#contacto" class="text-gray-300 hover:text-brand-light font-medium transition-colors">Contacto</a>
+                    </nav>
+
+                    <!-- Desktop CTA (WhatsApp) - UPDATED -->
+                    <div class="hidden md:flex items-center">
+                        <a href="https://wa.me/51912895025?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20cursos." target="_blank" rel="noopener noreferrer" class="bg-brand-whatsapp hover:bg-green-400 text-white px-5 py-2.5 rounded-full font-semibold transition-colors flex items-center gap-2 shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Contactar
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-white hover:text-brand-light focus:outline-none p-2">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-gray-700 pb-4">
+                <div class="px-2 pt-2 space-y-1 sm:px-3">
+                    <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-light hover:bg-gray-800">Inicio</a>
+                    <a href="#nosotros" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-light hover:bg-gray-800">Nosotros</a>
+                    <a href="#cursos" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-light hover:bg-gray-800">Cursos</a>
+                    <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-light hover:bg-gray-800">Contacto</a>
+                    <a href="https://wa.me/51912895025?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20cursos." target="_blank" class="block px-3 py-3 mt-4 text-center rounded-md text-base font-bold bg-brand-whatsapp text-white">
+                        <i class="fa-brands fa-whatsapp mr-2"></i> Contactar
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow">
+            <section id="inicio" class="relative brand-gradient pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden text-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="text-center lg:text-left">
+                            <div class="inline-block mb-4 px-3 py-1 rounded-full bg-brand-light/20 border border-brand-light/30">
+                                <span class="text-brand-light text-sm font-semibold tracking-wider uppercase">Capacitación y consultoría empresarial</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                                Impulsa tu Carrera en el Mundo de los <span class="text-brand-light">Negocios</span>
+                            </h1>
+                            <p class="mt-4 text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
+                                En Proyecta Escuela de Negocios, formamos profesionales altamente capacitados con cursos especializados y orientados a resultados.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <a href="#cursos" class="bg-transparent border-2 border-brand-light hover:bg-brand-light/10 text-brand-light px-8 py-3.5 rounded-full font-semibold text-lg transition-colors">
+                                    Ver Cursos Disponibles
+                                </a>
+                                <a href="https://wa.me/51912895025?text=Hola,%20deseo%20matricularme%20en%20un%20curso." target="_blank" rel="noopener noreferrer" class="bg-brand-whatsapp hover:bg-green-400 text-white px-8 py-3.5 rounded-full font-semibold text-lg transition-colors shadow-lg flex items-center justify-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i> Hablar con Asesor
+                                </a>
+                            </div>
+                        </div>
+                        <div class="relative mt-10 lg:mt-0">
+                            <div class="absolute inset-0 bg-brand-light rounded-full blur-3xl opacity-20 transform translate-x-10 -translate-y-10"></div>
+                            <img src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Equipo trabajando" class="relative z-10 rounded-2xl shadow-2xl object-cover w-full h-[400px] lg:h-[500px] border-4 border-brand-dark/50">
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-0 transform translate-y-1">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 sm:h-24 fill-gray-50">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C100.1,43.34,213.6,69.58,321.39,56.44Z"></path>
+                    </svg>
+                </div>
+            </section>
+
+            <section id="nosotros" class="py-20 bg-gray-50">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-brand-light font-bold tracking-widest uppercase text-sm mb-2">Por qué elegirnos</h2>
+                        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-brand-dark sm:text-4xl">
+                            Excelencia en Educación Ejecutiva
+                        </p>
+                        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                            Nuestra metodología práctica y orientada a resultados garantiza que apliques lo aprendido desde el primer día en tu entorno laboral.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-16 h-16 mx-auto bg-brand-light/10 text-brand-light rounded-2xl flex items-center justify-center mb-6 transform rotate-3">
+                                <i class="fa-solid fa-chalkboard-user text-3xl -rotate-3"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-dark mb-3">Docentes Expertos</h3>
+                            <p class="text-gray-500">Aprende de profesionales activos en el sector con amplia experiencia comprobada.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-16 h-16 mx-auto bg-brand-light/10 text-brand-light rounded-2xl flex items-center justify-center mb-6 transform -rotate-3">
+                                <i class="fa-solid fa-laptop-file text-3xl rotate-3"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-dark mb-3">Metodología Práctica</h3>
+                            <p class="text-gray-500">Casos reales y herramientas aplicables inmediatamente a tu vida laboral.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-16 h-16 mx-auto bg-brand-light/10 text-brand-light rounded-2xl flex items-center justify-center mb-6 transform rotate-3">
+                                <i class="fa-solid fa-certificate text-3xl -rotate-3"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-dark mb-3">Certificación Válida</h3>
+                            <p class="text-gray-500">Obtén certificados que respaldan tus nuevos conocimientos y mejoran tu CV.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cursos" class="py-20 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12 pb-6">
+                        <div class="max-w-2xl">
+                            <h2 class="text-brand-light font-bold tracking-widest uppercase text-sm mb-2">Nuestra Oferta Educativa</h2>
+                            <h3 class="text-3xl font-extrabold text-brand-dark sm:text-4xl">Cursos Especializados</h3>
+                            <div class="h-1 w-20 bg-brand-light mt-4 rounded"></div>
+                        </div>
+                        <div class="mt-6 md:mt-0 bg-green-50 px-4 py-2 rounded-lg border border-green-100">
+                            <span class="text-sm font-medium text-green-800"><i class="fa-brands fa-whatsapp mr-2 text-brand-whatsapp text-lg"></i> Haz clic en consultar para más info</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Course Container -->
+                    <div id="public-courses-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Courses will be injected here by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="brand-gradient py-16 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="b" patternUnits="userSpaceOnUse" width="40" height="40"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="none" stroke="white" stroke-width="2" opacity="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#b)"/></svg>
+                </div>
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-4">¿Listo para impulsar tu perfil profesional?</h2>
+                    <p class="text-blue-100 text-lg mb-8 max-w-2xl mx-auto font-script text-2xl">"Capacitación y consultoría empresarial"</p>
+                    <a href="https://wa.me/51912895025?text=Hola,%20vengo%20de%20la%20página%20web%20y%20quiero%20información%20general." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-brand-whatsapp text-white hover:bg-green-400 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-xl">
+                        <i class="fa-brands fa-whatsapp text-2xl mr-3"></i> Contactar al +51 912 895 025
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contacto" class="bg-brand-dark text-white pt-16 pb-8 border-t-[8px] border-brand-light">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <div class="lg:col-span-1">
+                        <a href="#" class="flex flex-col mb-6">
+                            <div class="w-12 h-12 mb-2 flex items-center justify-start">
+                                <img src="https://i.imgur.com/q1S6yHO.png" alt="Logo Proyecta" class="w-full h-full object-contain object-left">
+                            </div>
+                            <span class="font-black text-xl text-brand-light tracking-wider leading-none">PROYECTA</span>
+                            <span class="font-bold text-[9px] text-white tracking-widest mt-1">ESCUELA DE NEGOCIOS</span>
+                        </a>
+                        <p class="text-gray-400 text-sm mb-6">
+                            Comprometidos con la formación de profesionales líderes, brindando herramientas prácticas para el éxito empresarial.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-white tracking-wide">ENLACES RÁPIDOS</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#inicio" class="text-gray-400 hover:text-brand-light transition-colors text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-light"></i> Inicio</a></li>
+                            <li><a href="#nosotros" class="text-gray-400 hover:text-brand-light transition-colors text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-light"></i> Nosotros</a></li>
+                            <li><a href="#cursos" class="text-gray-400 hover:text-brand-light transition-colors text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-light"></i> Nuestros Cursos</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-white tracking-wide">CONTACTO</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-light/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa-brands fa-whatsapp text-brand-light"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Atención Comercial</p>
+                                    <a href="https://wa.me/51912895025" target="_blank" class="text-white hover:text-brand-light transition-colors font-medium">+51 912 895 025</a>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-light/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-globe text-brand-light"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Ubicación</p>
+                                    <p class="text-white font-medium">Perú</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold mb-6 text-white tracking-wide">SÍGUENOS</h4>
+                        <p class="text-gray-400 text-sm mb-4">Únete a nuestra comunidad en redes sociales.</p>
+                        <div class="flex gap-3">
+                            <a href="https://www.facebook.com/ProyectaCapacitacionesPeru" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#1877F2] flex items-center justify-center hover:opacity-80 transition-opacity text-white" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/proyectaescueladenegocios92" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center hover:opacity-80 transition-opacity text-white" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@proyectacapacitaciones8438" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#FF0000] flex items-center justify-center hover:opacity-80 transition-opacity text-white" aria-label="YouTube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                    <p>&copy; 2026 Proyecta Escuela de Negocios. Todos los derechos reservados.</p>
+                    <p class="mt-2 md:mt-0 font-script text-lg">Capacitación y consultoría empresarial</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: LOGIN VIEW (For /configuracion) -->
+    <!-- ========================================== -->
+    <div id="login-view" class="hidden min-h-screen brand-gradient flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-10 max-w-md w-full shadow-2xl relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute -top-16 -right-16 w-32 h-32 bg-brand-light rounded-full opacity-20"></div>
+            
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-20 h-20 mb-4">
+                    <img src="https://i.imgur.com/q1S6yHO.png" alt="Logo Proyecta" class="w-full h-full object-contain">
+                </div>
+                <h2 class="text-2xl font-bold text-brand-dark">Acceso Restringido</h2>
+                <p class="text-gray-500 text-sm mt-1">Panel de Administración Proyecta</p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" required class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl focus:ring-brand-light focus:border-brand-light transition-colors shadow-sm text-sm" placeholder="••••••••••">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-brand-dark text-white rounded-xl py-3 font-semibold hover:bg-brand-light transition-colors shadow-md">
+                    Ingresar al Panel
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <a href="#" onclick="window.location.hash=''" class="text-sm text-gray-400 hover:text-brand-dark transition-colors"><i class="fa-solid fa-arrow-left mr-1"></i> Volver a la web</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: ADMIN DASHBOARD -->
+    <!-- ========================================== -->
+    <div id="admin-view" class="hidden min-h-screen bg-gray-100 flex flex-col md:flex-row">
+        
+        <!-- Sidebar -->
+        <div class="bg-brand-dark text-white w-full md:w-64 flex-shrink-0 md:min-h-screen flex flex-col">
+            <div class="p-6 border-b border-gray-700 flex items-center gap-3">
+                <img src="https://i.imgur.com/q1S6yHO.png" alt="Logo" class="w-10 h-10">
+                <span class="font-bold text-lg tracking-wide">ADMIN PANEL</span>
+            </div>
+            <nav class="p-4 flex-grow">
+                <a href="#configuracion" class="flex items-center gap-3 bg-brand-light/20 text-brand-light px-4 py-3 rounded-xl font-medium">
+                    <i class="fa-solid fa-book"></i> Gestión de Cursos
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-700">
+                <button onclick="logout()" class="flex items-center justify-center gap-2 w-full text-gray-400 hover:text-white transition-colors py-2">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Admin Content -->
+        <div class="flex-grow p-6 md:p-10 overflow-y-auto">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Cursos</h2>
+                    <p class="text-gray-500">Agrega, edita o elimina los cursos de la página principal.</p>
+                </div>
+                <a href="#" onclick="window.location.hash=''" class="bg-white text-gray-600 border border-gray-300 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                    Ver Web Pública <i class="fa-solid fa-external-link-alt ml-1"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Add Course Form -->
+                <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-gray-200 p-6 self-start">
+                    <h3 class="text-lg font-bold text-brand-dark mb-4 border-b pb-2"><i class="fa-solid fa-plus-circle mr-2"></i> Agregar Nuevo Curso</h3>
+                    
+                    <form id="add-course-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Título del Curso</label>
+                            <input type="text" id="course-title" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-light focus:outline-none">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Categoría (Ej: Operaciones)</label>
+                            <input type="text" id="course-category" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-light focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descripción Breve</label>
+                            <textarea id="course-desc" required rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-light focus:outline-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Número de WhatsApp (Ej: 51912895025)</label>
+                            <div class="flex">
+                                <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"><i class="fa-brands fa-whatsapp"></i></span>
+                                <input type="number" id="course-whatsapp" required class="flex-1 block w-full border border-gray-300 rounded-none rounded-r-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-light focus:outline-none" value="51912895025">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Imagen del Curso</label>
+                            <input type="file" id="course-image" accept="image/*" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light/10 file:text-brand-light hover:file:bg-brand-light/20 cursor-pointer">
+                            <p class="text-xs text-gray-400 mt-1">Sube una imagen ligera para mejor rendimiento.</p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-light text-white rounded-lg py-2.5 font-bold hover:bg-brand-hover transition-colors shadow-sm mt-4">
+                            Guardar Curso
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Existing Courses List -->
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-bold text-brand-dark mb-4 border-b pb-2"><i class="fa-solid fa-list mr-2"></i> Cursos Publicados</h3>
+                    <div id="admin-courses-list" class="space-y-4">
+                        <!-- Admin courses injected here -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CUSTOM MODAL (Replaces Alerts) -->
+    <!-- ========================================== -->
+    <div id="custom-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-brand-dark/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col items-center text-center" id="modal-content">
+            <div id="modal-icon" class="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-3xl">
+                <!-- Icon injected by JS -->
+            </div>
+            <h3 id="modal-title" class="text-xl font-bold mb-2 text-brand-dark">Título</h3>
+            <p id="modal-desc" class="text-gray-600 mb-6 text-sm">Descripción del mensaje.</p>
+            <button onclick="closeModal()" class="w-full bg-brand-dark text-white rounded-xl py-3 font-semibold hover:bg-gray-800 transition-colors">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ========================================== -->
+    <script>
+        // --- DATA MANAGEMENT ---
+        const defaultCourses = [
+            {
+                id: "course_1",
+                title: "Logística, Operaciones y Gestión de Almacenes",
+                category: "Operaciones",
+                description: "Aprende planeamiento, implementación y control de los procesos productivos, optimizando el flujo de materiales y productos.",
+                image: "https://images.pexels.com/photos/179063/pexels-photo-179063.jpeg?auto=compress&cs=tinysrgb&w=800",
+                whatsapp: "51912895025"
+            },
+            {
+                id: "course_2",
+                title: "Gestión Estratégica de Recursos Humanos",
+                category: "Administración",
+                description: "Domina las herramientas para atraer, retener, capacitar y potenciar el talento dentro de las organizaciones modernas.",
+                image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+                whatsapp: "51912895025"
+            },
+            {
+                id: "course_3",
+                title: "Estrategias de Ventas y Negociación B2B",
+                category: "Comercial",
+                description: "Técnicas avanzadas de persuasión, cierre de ventas y gestión de cuentas corporativas para maximizar ingresos.",
+                image: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800",
+                whatsapp: "51912895025"
+            }
+        ];
+
+        function getCourses() {
+            const stored = localStorage.getItem('proyecta_courses');
+            if (stored) {
+                let courses = JSON.parse(stored);
+                // Migración automática del número antiguo al nuevo para cursos ya guardados
+                let updated = false;
+                courses.forEach(c => {
+                    if (c.whatsapp === "51919047622") {
+                        c.whatsapp = "51912895025";
+                        updated = true;
+                    }
+                });
+                if (updated) {
+                    localStorage.setItem('proyecta_courses', JSON.stringify(courses));
+                }
+                return courses;
+            }
+            localStorage.setItem('proyecta_courses', JSON.stringify(defaultCourses));
+            return defaultCourses;
+        }
+
+        function saveCourses(courses) {
+            try {
+                localStorage.setItem('proyecta_courses', JSON.stringify(courses));
+                return true;
+            } catch (e) {
+                // If localstorage is full (e.g. huge images)
+                showModal('Error de Almacenamiento', 'La imagen es muy pesada. Por favor, sube una imagen de menor tamaño.', 'error');
+                return false;
+            }
+        }
+
+        // --- CUSTOM MODAL LOGIC ---
+        function showModal(title, message, type = 'info') {
+            const modal = document.getElementById('custom-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalIcon = document.getElementById('modal-icon');
+            
+            modalTitle.innerText = title;
+            modalDesc.innerText = message;
+            
+            if (type === 'error') {
+                modalIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                modalIcon.className = "w-16 h-16 rounded-full flex items-center justify-center mb-4 text-4xl bg-red-100 text-red-500";
+            } else if (type === 'success') {
+                modalIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                modalIcon.className = "w-16 h-16 rounded-full flex items-center justify-center mb-4 text-4xl bg-green-100 text-green-500";
+            } else {
+                modalIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+                modalIcon.className = "w-16 h-16 rounded-full flex items-center justify-center mb-4 text-4xl bg-blue-100 text-blue-500";
+            }
+
+            modal.classList.remove('hidden');
+            // Slight delay to allow display block to apply before transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('modal-content').classList.remove('scale-95');
+                document.getElementById('modal-content').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            modal.classList.add('opacity-0');
+            document.getElementById('modal-content').classList.remove('scale-100');
+            document.getElementById('modal-content').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function openWhatsApp(courseName, wnumber) {
+            const number = wnumber || '51912895025';
+            const message = encodeURIComponent(`Hola, quisiera solicitar información detallada y precios sobre el curso: ${courseName}`);
+            const whatsappUrl = `https://wa.me/${number}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // --- MOBILE MENU LOGIC ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')){
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // --- RENDERING ---
+        function renderPublicCourses() {
+            const container = document.getElementById('public-courses-container');
+            const courses = getCourses();
+            
+            if(courses.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">Próximamente nuevos cursos.</div>`;
+                return;
+            }
+
+            container.innerHTML = courses.map(course => `
+                <div class="course-card bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)]">
+                    <div class="relative h-56 overflow-hidden bg-gray-100">
+                        <img src="${course.image}" alt="${course.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-brand-dark text-xs px-3 py-1.5 rounded-full font-bold uppercase tracking-wider shadow-sm">
+                            ${course.category}
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-bold text-brand-dark mb-3 line-clamp-2 leading-snug">${course.title}</h4>
+                            <p class="text-gray-500 text-sm mb-4">${course.description}</p>
+                        </div>
+                        <button onclick="openWhatsApp('${course.title.replace(/'/g, "\\'")}', '${course.whatsapp}')" class="mt-auto w-full bg-brand-dark text-white hover:bg-brand-light font-semibold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 group">
+                            Consultar por WhatsApp <i class="fa-brands fa-whatsapp text-xl text-brand-whatsapp group-hover:text-white transition-colors"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminCourses() {
+            const container = document.getElementById('admin-courses-list');
+            const courses = getCourses();
+            
+            if(courses.length === 0) {
+                container.innerHTML = `<div class="text-center py-6 text-gray-500 border-2 border-dashed border-gray-200 rounded-xl">No hay cursos registrados.</div>`;
+                return;
+            }
+
+            container.innerHTML = courses.map(course => `
+                <div class="flex flex-col sm:flex-row items-center gap-4 p-4 border border-gray-100 rounded-xl bg-gray-50 hover:bg-white hover:shadow-sm transition-all">
+                    <div class="w-full sm:w-24 h-16 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
+                        <img src="${course.image}" alt="${course.title}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow w-full text-left">
+                        <h4 class="font-bold text-gray-800 text-sm leading-tight mb-1">${course.title}</h4>
+                        <div class="flex items-center gap-3 text-xs text-gray-500">
+                            <span class="bg-gray-200 px-2 py-0.5 rounded">${course.category}</span>
+                            <span><i class="fa-brands fa-whatsapp text-green-500"></i> ${course.whatsapp}</span>
+                        </div>
+                    </div>
+                    <button onclick="deleteCourse('${course.id}')" class="w-full sm:w-auto mt-2 sm:mt-0 flex-shrink-0 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-trash-can"></i> <span class="sm:hidden">Eliminar</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // --- ADMIN FUNCTIONS ---
+        function deleteCourse(id) {
+            let courses = getCourses();
+            courses = courses.filter(c => c.id !== id);
+            saveCourses(courses);
+            renderAdminCourses();
+            showModal('Curso Eliminado', 'El curso ha sido retirado exitosamente.', 'success');
+        }
+
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        document.getElementById('add-course-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('course-title').value;
+            const category = document.getElementById('course-category').value;
+            const description = document.getElementById('course-desc').value;
+            const whatsapp = document.getElementById('course-whatsapp').value;
+            const imageFile = document.getElementById('course-image').files[0];
+
+            if(!imageFile) return;
+
+            // Simple loading state
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando...';
+            btn.disabled = true;
+
+            try {
+                const base64Image = await getBase64(imageFile);
+                
+                const newCourse = {
+                    id: 'course_' + Date.now(),
+                    title,
+                    category,
+                    description,
+                    whatsapp,
+                    image: base64Image
+                };
+
+                const courses = getCourses();
+                courses.push(newCourse);
+                
+                if (saveCourses(courses)) {
+                    document.getElementById('add-course-form').reset();
+                    renderAdminCourses();
+                    showModal('¡Éxito!', 'El curso ha sido agregado correctamente a la web.', 'success');
+                }
+            } catch (err) {
+                showModal('Error', 'Hubo un problema al procesar la imagen.', 'error');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+            if (pass === 'Proyecta@2026') {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                document.getElementById('password').value = '';
+                handleRouting(); // Re-evaluate routing to show admin panel
+            } else {
+                showModal('Acceso Denegado', 'La contraseña ingresada es incorrecta.', 'error');
+                document.getElementById('password').value = '';
+            }
+        });
+
+        function logout() {
+            sessionStorage.removeItem('adminLoggedIn');
+            handleRouting();
+        }
+
+        // --- ROUTING SYSTEM (Single Page App Behavior) ---
+        function handleRouting() {
+            const hash = window.location.hash;
+            const publicView = document.getElementById('public-view');
+            const loginView = document.getElementById('login-view');
+            const adminView = document.getElementById('admin-view');
+
+            if (hash === '#configuracion') {
+                publicView.classList.add('hidden');
+                
+                if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                    loginView.classList.add('hidden');
+                    adminView.classList.remove('hidden');
+                    renderAdminCourses();
+                } else {
+                    loginView.classList.remove('hidden');
+                    adminView.classList.add('hidden');
+                }
+            } else {
+                // Default public view
+                publicView.classList.remove('hidden');
+                loginView.classList.add('hidden');
+                adminView.classList.add('hidden');
+                renderPublicCourses(); // Re-render in case of updates
+            }
+            
+            // Scroll to top on route change
+            window.scrollTo(0, 0);
+        }
+
+        // Listen for URL changes
+        window.addEventListener('hashchange', handleRouting);
+        
+        // Initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            handleRouting();
+        });
+
+    </script>
+</body>
+</html>
