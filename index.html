@@ -720,16 +720,21 @@
                     loginView.classList.remove('hidden');
                     adminView.classList.add('hidden');
                 }
+                
+                // Scroll to top when entering config
+                window.scrollTo(0, 0);
             } else {
                 // Default public view
                 publicView.classList.remove('hidden');
                 loginView.classList.add('hidden');
                 adminView.classList.add('hidden');
                 renderPublicCourses(); // Re-render in case of updates
+                
+                // Only scroll to top if returning to the main URL without a specific section anchor
+                if (hash === '' || hash === '#') {
+                    window.scrollTo(0, 0);
+                }
             }
-            
-            // Scroll to top on route change
-            window.scrollTo(0, 0);
         }
 
         // Listen for URL changes
